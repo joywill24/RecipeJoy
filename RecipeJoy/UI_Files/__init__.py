@@ -1,0 +1,2 @@
+def mainwindow():
+    return None
