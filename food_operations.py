@@ -2,47 +2,31 @@
 import logging
 
 class FoodOperations:
+
     @staticmethod
     def add_food_item(connection, food_name, no_serve, serv_size, calories, protein, carbs, fat):
         try:
             cursor = connection.cursor()
 
-            # Insert a record into the ServingInfo table
-            cursor.execute("""
-                INSERT INTO ServingInfo (NoServe, servsize)
-                VALUES (?, ?)
-                """,
-                (no_serve, serv_size))
-            connection.commit()
+            # Insert serving info
+            cursor.execute("INSERT INTO ServingInfo (NoServe, ServSize) OUTPUT INSERTED.ServId VALUES (?, ?)",
+                           (no_serve, serv_size))
+            serv_id = cursor.fetchone()[0]
 
-            # Retrieve the generated ServId
-            cursor.execute("SELECT @@IDENTITY AS ServId")
-            serve_id = cursor.fetchone()[0]
-
-            # Insert a record into the Foods table
-            cursor.execute("""
-                INSERT INTO Foods (ServId, FoodName)
-                VALUES (?, ?)
-                """,
-                (serve_id, food_name))
-            connection.commit()
-
-            # Retrieve the generated FoodId
-            cursor.execute("SELECT @@IDENTITY AS FoodId")
+            # Insert food
+            cursor.execute("INSERT INTO Foods (ServId, FoodName) OUTPUT INSERTED.FoodId VALUES (?, ?)",
+                           (serv_id, food_name))
             food_id = cursor.fetchone()[0]
 
-            # Insert record into the Nutrition table
-            cursor.execute("""
-                INSERT INTO Nutrition (FoodId, Calories, Protein, Carbs, Fat)
-                VALUES (?, ?, ?, ?, ?)
-                """,
-                (food_id, calories, protein, carbs, fat))
-            connection.commit()
+            # Insert nutrition info
+            cursor.execute("INSERT INTO Nutrition (FoodId, Calories, Protein, Carbs, Fat) VALUES (?, ?, ?, ?, ?)",
+                           (food_id, calories, protein, carbs, fat))
 
-            print("Food item added successfully.")
+            connection.commit()
             return food_id
         except Exception as error:
-            logging.error(f"Error while adding food item: {error}")
+            logging.error(f"Error adding food item: {error}")
+            connection.rollback()
             return None
 
     @staticmethod
@@ -75,11 +59,13 @@ class FoodOperations:
                 WHERE FoodId = ?
                 """,
                 (new_calories, new_protein, new_carbs, new_fat, food_id))
-            connection.commit()
 
-            print("Food item updated successfully.")
+            connection.commit()
+            logging.info(f"Food item with ID {food_id} udpated successfully.")
         except Exception as error:
-            logging.error(f"Error while updating food item: {error}")
+            logging.error(f"Error updating food item: {error}")
+            connection.rollback()
+            raise
 
     @staticmethod
     def delete_food_item(connection, food_id):
@@ -115,3 +101,38 @@ class FoodOperations:
             print ("Food item deleted successfully.")
         except Exception as error:
             logging.error(f"Error while deleting food item: {error}")
+
+    @staticmethod
+    def get_measurements(connection):
+        try:
+            cursor = connection.cursor()
+            cursor.execute("SELECT MeasId, MeasName FROM Measurements ORDER BY MeasName")
+            return cursor.fetchall()
+        except Exception as error:
+            logging.error(f"Error while getting measurements: {error}")
+            return []
+
+    @staticmethod
+    def search_foods(connection, search_term):
+        cursor = connection.cursor()
+        query = """
+                SELECT F.FoodId, F.FoodName, S.NoServe, S.ServSize, 
+                       N.Calories, N.Carbs, N.Fat, N.Protein
+                FROM Foods F
+                JOIN ServingInfo S ON F.ServId = S.ServId
+                JOIN Nutrition N ON F.FoodId = N.FoodId
+                WHERE F.FoodName LIKE ?
+            """
+        cursor.execute(query, (f'%{search_term}%',))
+        return [Food(*row) for row in cursor.fetchall()]
+
+class Food:
+    def __init__(self, food_id, name, no_serve, serv_size, calories, carbs, fat, protein):
+        self.food_id = food_id
+        self.name = name
+        self.no_serve = no_serve
+        self.serv_size = serv_size
+        self.calories = calories
+        self.carbs = carbs
+        self.fat = fat
+        self.protein = protein

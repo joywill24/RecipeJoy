@@ -16,8 +16,10 @@ class DatabaseManager:
                 "Trusted_Connection=yes;"
             )
             print("Connected to database successfully.")
+            return True
         except pyodbc.Error as error:
             logging.error(f"Error while connecting to SQL Server: {error}")
+            return False
 
     def close_connection(self):
         if self.connection:
