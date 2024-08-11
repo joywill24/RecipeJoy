@@ -13,9 +13,9 @@ class DatabaseManager:
             # Establish a connection to the SQL Server database
             self.connection = pyodbc.connect(
                 "Driver={SQL Server};"
-                "Server=Laptop-YOGA\SQLEXPRESS;"
+                "Server=localhost\SQLEXPRESS;"
                 "Database=RecipeJoy;"
-                "Trusted_Connection=yes;"
+                "Trusted_Connection=True;"
             )
             print("Connected to database successfully.")
             return True
