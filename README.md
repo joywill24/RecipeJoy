@@ -26,7 +26,7 @@ RecipeJoy is a PyQt5-based desktop application for managing recipes, ingredients
 3. Set up the database:
    * Install SQL Server Express 2019 or later if you haven't already.
    * During installation, select "Named instance" and use the instance name "SQLEXPRESS".
-   * Download the RecipeJoy.bak file from the GitHub repository.
+   * Download the RecipeJoy.bak file from the Assets folder in the GitHub repository.
    * Open SQL Server Management Studio (SSMS) and connect to your local SQLEXPRESS instance.
    * Right-click on "Databases" in the Object Explorer and select "Restore Database...".
    * Choose "Device" as the source, click the "..." button, and select "File" as the backup media.
