@@ -30,7 +30,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>9</number>
       </property>
       <widget class="QWidget" name="homePage">
        <property name="minimumSize">
@@ -48,6 +48,9 @@
           <height>501</height>
          </rect>
         </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -58,7 +61,7 @@
          <bool>true</bool>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
         </property>
        </widget>
        <widget class="QLabel" name="tagLine">
@@ -78,13 +81,13 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
          <string>Your Personal Recipe Manager</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QPushButton" name="findArecipeButton">
@@ -333,19 +336,19 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
          <string>Find a Recipe</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QPushButton" name="returnTohomeButton">
         <property name="geometry">
          <rect>
-          <x>350</x>
+          <x>380</x>
           <y>590</y>
           <width>231</width>
           <height>51</height>
@@ -363,15 +366,15 @@
          <string>Return to Home</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="searchLineEdit">
+       <widget class="QLineEdit" name="searchCriteriaLineEdit">
         <property name="enabled">
          <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
           <x>320</x>
-          <y>180</y>
-          <width>351</width>
+          <y>150</y>
+          <width>361</width>
           <height>26</height>
          </rect>
         </property>
@@ -382,21 +385,21 @@
        <widget class="QComboBox" name="searchCategoryComboBox">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>180</y>
-          <width>181</width>
+          <x>380</x>
+          <y>100</y>
+          <width>191</width>
           <height>26</height>
          </rect>
         </property>
        </widget>
-       <widget class="QPushButton" name="searchButton">
+       <widget class="QPushButton" name="recipeSearchButton">
         <property name="enabled">
          <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
-          <x>670</x>
-          <y>180</y>
+          <x>590</x>
+          <y>100</y>
           <width>93</width>
           <height>29</height>
          </rect>
@@ -408,8 +411,8 @@
        <widget class="QLabel" name="searchByLabel">
         <property name="geometry">
          <rect>
-          <x>62</x>
-          <y>180</y>
+          <x>310</x>
+          <y>100</y>
           <width>81</width>
           <height>20</height>
          </rect>
@@ -418,7 +421,7 @@
          <string>Search by:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="calorieMinLineEdit">
+       <widget class="QLineEdit" name="minCalLineEdit">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -431,13 +434,13 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="calorieMaxLineEdit">
+       <widget class="QLineEdit" name="maxCalLineEdit">
         <property name="enabled">
          <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
-          <x>520</x>
+          <x>470</x>
           <y>240</y>
           <width>113</width>
           <height>26</height>
@@ -451,7 +454,7 @@
         <property name="geometry">
          <rect>
           <x>340</x>
-          <y>320</y>
+          <y>300</y>
           <width>113</width>
           <height>26</height>
          </rect>
@@ -463,8 +466,8 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>500</x>
-          <y>320</y>
+          <x>480</x>
+          <y>300</y>
           <width>113</width>
           <height>26</height>
          </rect>
@@ -476,8 +479,8 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>660</x>
-          <y>320</y>
+          <x>620</x>
+          <y>300</y>
           <width>113</width>
           <height>26</height>
          </rect>
@@ -485,15 +488,196 @@
        </widget>
        <widget class="QTableWidget" name="resultsTable">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>380</y>
-          <width>701</width>
-          <height>192</height>
+          <y>401</y>
+          <width>831</width>
+          <height>171</height>
          </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustIgnored</enum>
+        </property>
+        <attribute name="horizontalHeaderMinimumSectionSize">
+         <number>0</number>
+        </attribute>
+        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Recipe Name</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignLeading|AlignVCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string/>
+         </property>
+        </column>
+       </widget>
+       <widget class="QLabel" name="recipeNameLabel_2">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>150</y>
+          <width>111</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Search Criteria:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="caloriesLabel_2">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>240</y>
+          <width>63</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Calories:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="macrosLabel">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>300</y>
+          <width>63</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Macros:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="calsFromLabel">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>220</y>
+          <width>63</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>From:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="calsToLabel">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>220</y>
+          <width>63</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>To:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="carbsLabel_2">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>280</y>
+          <width>63</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Carbs:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="proteinLabel_2">
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>280</y>
+          <width>63</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Protein:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="fatLabel_2">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>280</y>
+          <width>63</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Fat:</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="proteinTypeComboBox">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>350</y>
+          <width>231</width>
+          <height>26</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="proteinTypeLabel_2">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>350</y>
+          <width>91</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Protein Type:</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="customTagsComboBox">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>190</y>
+          <width>281</width>
+          <height>26</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="customTagsLabel">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>190</y>
+          <width>91</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Custom Tags:</string>
         </property>
        </widget>
       </widget>
@@ -514,20 +698,20 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
          <string>Recipe Name</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QPushButton" name="editRecipeButton">
         <property name="geometry">
          <rect>
           <x>770</x>
-          <y>250</y>
+          <y>160</y>
           <width>151</width>
           <height>41</height>
          </rect>
@@ -548,7 +732,7 @@
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>300</y>
+          <y>210</y>
           <width>121</width>
           <height>31</height>
          </rect>
@@ -557,21 +741,39 @@
          <string>Ingredients:</string>
         </property>
        </widget>
-       <widget class="QListWidget" name="ingredientsTable">
+       <widget class="QTableWidget" name="ingredientsTable">
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>330</y>
+          <y>240</y>
           <width>841</width>
-          <height>91</height>
+          <height>141</height>
          </rect>
         </property>
+        <property name="rowCount">
+         <number>0</number>
+        </property>
+        <column>
+         <property name="text">
+          <string>Ingredient</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Amount</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Unit</string>
+         </property>
+        </column>
        </widget>
        <widget class="QLabel" name="stepsLabel">
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>420</y>
+          <y>380</y>
           <width>121</width>
           <height>31</height>
          </rect>
@@ -580,15 +782,20 @@
          <string>Steps:</string>
         </property>
        </widget>
-       <widget class="QListWidget" name="stepsTable">
+       <widget class="QTableWidget" name="stepsTable">
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>450</y>
+          <y>410</y>
           <width>841</width>
-          <height>101</height>
+          <height>141</height>
          </rect>
         </property>
+        <column>
+         <property name="text">
+          <string>Steps</string>
+         </property>
+        </column>
        </widget>
        <widget class="QLabel" name="notesNutritionLabel">
         <property name="geometry">
@@ -613,7 +820,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="notesTab">
          <attribute name="title">
@@ -645,22 +852,22 @@
           </property>
           <column>
            <property name="text">
-            <string>New Column</string>
+            <string>Calories</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>New Column</string>
+            <string>Carbs</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>New Column</string>
+            <string>Fat</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>New Column</string>
+            <string>Protein</string>
            </property>
           </column>
          </widget>
@@ -681,21 +888,11 @@
          </widget>
         </widget>
        </widget>
-       <widget class="QGraphicsView" name="recipeImage">
-        <property name="geometry">
-         <rect>
-          <x>350</x>
-          <y>110</y>
-          <width>256</width>
-          <height>192</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="servingSizeLabel">
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>240</y>
+          <y>150</y>
           <width>111</width>
           <height>20</height>
          </rect>
@@ -708,7 +905,7 @@
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>260</y>
+          <y>170</y>
           <width>113</width>
           <height>26</height>
          </rect>
@@ -732,13 +929,13 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
          <string>Submit a Recipe</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QLineEdit" name="recipeNamefield">
@@ -839,13 +1036,13 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
          <string>Add or Edit Foods for Recipe</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QLabel" name="recipeIngredientsLabel">
@@ -870,9 +1067,9 @@
        <widget class="QTableWidget" name="recipeIngredientsList">
         <property name="geometry">
          <rect>
-          <x>50</x>
+          <x>40</x>
           <y>240</y>
-          <width>921</width>
+          <width>931</width>
           <height>111</height>
          </rect>
         </property>
@@ -884,6 +1081,16 @@
           <font>
            <bold>true</bold>
           </font>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string/>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string/>
          </property>
         </column>
         <column>
@@ -964,7 +1171,7 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>50</x>
+          <x>40</x>
           <y>210</y>
           <width>131</width>
           <height>31</height>
@@ -983,8 +1190,11 @@
           <height>211</height>
          </rect>
         </property>
+        <property name="horizontalScrollBarPolicy">
+         <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+        </property>
         <property name="columnCount">
-         <number>9</number>
+         <number>8</number>
         </property>
         <column>
          <property name="text">
@@ -1056,16 +1266,7 @@
           </font>
          </property>
         </column>
-        <column>
-         <property name="text">
-          <string/>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string/>
-         </property>
-        </column>
+        <column/>
        </widget>
       </widget>
       <widget class="QWidget" name="addStepsToRecipePage">
@@ -1085,13 +1286,13 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
          <string>Add or Edit Steps for Recipe</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QPushButton" name="saveButton_5">
@@ -1217,13 +1418,13 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
          <string>Finish Recipe Info</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QPushButton" name="saveButton_6">
@@ -1357,13 +1558,13 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
          <string>Manage Custom Tags</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QLabel" name="tagsNameLabel">
@@ -1522,13 +1723,13 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
          <string>Manage Foods and Nutrition Information</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QPushButton" name="addNewFoodItemButton">
@@ -1659,13 +1860,13 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
-         <string>Add New Food and Nutrition Information</string>
+         <string>Manage Food and Nutrition Information</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QLabel" name="foodNameLabel">
@@ -1817,7 +2018,7 @@
          <string notr="true">background-color: rgb(139, 196, 190);</string>
         </property>
         <property name="text">
-         <string>Save and Return</string>
+         <string>Return to Home</string>
         </property>
        </widget>
        <widget class="QLabel" name="caloriesLabel">
@@ -1861,7 +2062,28 @@
          <string notr="true">background-color: rgb(139, 196, 190);</string>
         </property>
         <property name="text">
-         <string>Save and Return to New Recipe</string>
+         <string>Save and Return to Recipe</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="saveButton_8">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>380</y>
+          <width>151</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(139, 196, 190);</string>
+        </property>
+        <property name="text">
+         <string>Save</string>
         </property>
        </widget>
       </widget>
@@ -1882,13 +2104,13 @@
          </font>
         </property>
         <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
         </property>
         <property name="text">
          <string>Manage Protein Types</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
        <widget class="QPushButton" name="addNewProteinTypeButton">
@@ -1920,12 +2142,6 @@
           <width>791</width>
           <height>192</height>
          </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>3</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
         </property>
         <column>
          <property name="text">
@@ -2055,24 +2271,7 @@
   </action>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>searchCategoryComboBox</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onSearchCategoryChanged()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>216</x>
-     <y>231</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>291</x>
-     <y>28</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
   <slot>onSearchCategoryChanged()</slot>
  </slots>
